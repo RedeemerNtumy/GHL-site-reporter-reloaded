@@ -5,9 +5,12 @@ from selenium.common.exceptions import NoSuchElementException
 import info
 import config
 import time
+from playsound import playsound
+import AppKit
+
 
 count=1
-messages=50
+messages=10
 options=webdriver.ChromeOptions()
 options.add_argument(config.CHROME_PROFILE_PATH) 
 driver = webdriver.Chrome('/usr/local/bin/chromedriver',options=options)
@@ -32,23 +35,31 @@ driver.find_element(By.XPATH,id_input).send_keys(info.your_id)
 driver.find_element(By.XPATH,password_input).send_keys(info.your_password)
 driver.find_element(By.XPATH,signup).click()
 while True:
-    if "Kindvisit the platform when the portal is opened" in driver.find_element(By.XPATH,"/html/body").text:   
-        print(1)
-        #time.sleep(20)
+    if "Kindly visit the platform when the portal is opened" in driver.find_element(By.XPATH,"/html/body").text:   
+        print("Checking....")
+        time.sleep(20)
+        AppKit.NSBeep()
+       
     else:
-        driver.find_element_by_tag_name('body').send_keys(Keys.COMMAND + 't')
+        playsound("GhanaHostels.mp4")
+        driver.find_element(By.TAG_NAME,'body').send_keys(Keys.COMMAND + 't')
         driver.get(whatsapp)
+        playsound("GhanaHostels.mp4")
         time.sleep(20) # Change time to 20 after first login
+        
         while count <= messages:
             try:
-                group=driver.find_element(By.XPATH,'//span[@title = "{}"]'.format(info.chat))
+                print(info.chat)
+                group=driver.find_element(By.XPATH,f'//span[@title = "{info.chat}"]')
                 group.click()
-                driver.find_element(By.XPATH,chatbox).send_keys("GHL bot v1.2 Speaking: The Ghana Hostels portal is open ‼️‼️‼️‼️")
+                driver.find_element(By.XPATH,chatbox).send_keys("GHL Bot v1.2: THE GHANA HOSTELS PORTAL IS OPEN. *Someone please call me if I am not online so I can book a room* ")
                 button=driver.find_element(By.CLASS_NAME,'_4sWnG')
                 button.click()
-                count = count + 1
-                time.sleep(1)
             except Exception as e:
                 print(e)
+            count+=1
+        playsound("GhanaHostels.mp4")
+    driver.find_element_by_tag_name('body').send_keys(Keys.COMMAND + 't')
+    driver.get("https://www.ghanahostels.org/student")
 driver.close()  
 
