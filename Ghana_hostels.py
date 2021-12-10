@@ -7,6 +7,7 @@ import config
 import time
 from playsound import playsound
 import AppKit
+import requests
 
 
 count=1
@@ -39,7 +40,8 @@ while True:
         print("Checking....")
         time.sleep(20)
         AppKit.NSBeep()
-       
+    elif requests.get("https://www.ghanahostels.org/student").status_code!=200:
+        AppKit.NSBeep()
     else:
         playsound("GhanaHostels.mp4")
         driver.find_element(By.TAG_NAME,'body').send_keys(Keys.COMMAND + 't')
