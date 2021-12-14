@@ -35,10 +35,11 @@ whatsapp="https://web.whatsapp.com"
 driver.find_element(By.XPATH,id_input).send_keys(info.your_id)
 driver.find_element(By.XPATH,password_input).send_keys(info.your_password)
 driver.find_element(By.XPATH,signup).click()
+test="MAIN\nDashboard\nSETTINGS\nMy Profile\nLogout\nGhana Hostels Limited\nWelcome, Redeemer Kwame\nDashboard\nUniversity of Ghana Student Homepage\nNotice\nCongratulations !!\nYour profile has been validated.\nKindly visit the platform when the portal is opened for reservation / booking.\nClick here to view profile"
 while True:
-    if "Kindly visit the platform when the portal is opened" in driver.find_element(By.XPATH,"/html/body").text:   
+    if test==driver.find_element(By.XPATH,"/html/body").text:   
         print("Checking....")
-        time.sleep(20)
+        time.sleep(10)
         AppKit.NSBeep()
     elif requests.get("https://www.ghanahostels.org/student").status_code!=200:
         AppKit.NSBeep()
@@ -47,7 +48,7 @@ while True:
         driver.find_element(By.TAG_NAME,'body').send_keys(Keys.COMMAND + 't')
         driver.get(whatsapp)
         playsound("GhanaHostels.mp4")
-        time.sleep(20) # Change time to 20 after first login
+        time.sleep(25) # Change time to 20 after first login
         
         while count <= messages:
             try:
@@ -61,7 +62,7 @@ while True:
                 print(e)
             count+=1
         playsound("GhanaHostels.mp4")
-    driver.find_element_by_tag_name('body').send_keys(Keys.COMMAND + 't')
-    driver.get("https://www.ghanahostels.org/student")
+    driver.find_element(By.TAG_NAME,'body').send_keys(Keys.COMMAND + 't')
+   
 driver.close()  
 
