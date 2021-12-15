@@ -35,6 +35,7 @@ whatsapp="https://web.whatsapp.com"
 driver.find_element(By.XPATH,id_input).send_keys(info.your_id)
 driver.find_element(By.XPATH,password_input).send_keys(info.your_password)
 driver.find_element(By.XPATH,signup).click()
+interrupt="Your connection was interrupted\nA network change was detected.\.ERR_NETWORK_CHANGED\nReload"
 connect_off="This site can’t be reached\nwww.ghanahostels.org took too long to respond.\nTry:\nChecking the connection\nChecking the proxy and the firewall\nERR_TIMED_OUT\nReload\nDetails"
 test="MAIN\nDashboard\nSETTINGS\nMy Profile\nLogout\nGhana Hostels Limited\nWelcome, Redeemer Kwame\nDashboard\nUniversity of Ghana Student Homepage\nNotice\nCongratulations !!\nYour profile has been validated.\nKindly visit the platform when the portal is opened for reservation / booking.\nClick here to view profile"
 while True:
@@ -43,7 +44,7 @@ while True:
         print("Checking....")
         AppKit.NSBeep()
         driver.refresh() 
-    elif connect_off==driver.find_element(By.XPATH,"/html/body").text:
+    elif connect_off==driver.find_element(By.XPATH,"/html/body").text or interrupt==driver.find_element(By.XPATH,"/html/body").text:
         driver.refresh() 
     else:
         print(driver.find_element(By.XPATH,"/html/body").text)
@@ -51,7 +52,7 @@ while True:
         driver.find_element(By.TAG_NAME,'body').send_keys(Keys.COMMAND + 't')
         driver.get(whatsapp)
         playsound("GhanaHostels.mp4")
-        time.sleep(25) # Change time to 20 after first login
+        time.sleep(25)
         
         while count <= messages:
             try:
