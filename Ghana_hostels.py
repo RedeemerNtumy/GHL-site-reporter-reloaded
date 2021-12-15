@@ -35,15 +35,18 @@ whatsapp="https://web.whatsapp.com"
 driver.find_element(By.XPATH,id_input).send_keys(info.your_id)
 driver.find_element(By.XPATH,password_input).send_keys(info.your_password)
 driver.find_element(By.XPATH,signup).click()
+connect_off="This site can’t be reached\nwww.ghanahostels.org took too long to respond.\nTry:\nChecking the connection\nChecking the proxy and the firewall\nERR_TIMED_OUT\nReload\nDetails"
 test="MAIN\nDashboard\nSETTINGS\nMy Profile\nLogout\nGhana Hostels Limited\nWelcome, Redeemer Kwame\nDashboard\nUniversity of Ghana Student Homepage\nNotice\nCongratulations !!\nYour profile has been validated.\nKindly visit the platform when the portal is opened for reservation / booking.\nClick here to view profile"
 while True:
-    if test==driver.find_element(By.XPATH,"/html/body").text:   
+    time.sleep(10)
+    if test ==driver.find_element(By.XPATH,"/html/body").text:   
         print("Checking....")
-        time.sleep(10)
         AppKit.NSBeep()
-    elif requests.get("https://www.ghanahostels.org/student").status_code!=200:
-        AppKit.NSBeep()
+        driver.refresh() 
+    elif connect_off==driver.find_element(By.XPATH,"/html/body").text:
+        driver.refresh() 
     else:
+        print(driver.find_element(By.XPATH,"/html/body").text)
         playsound("GhanaHostels.mp4")
         driver.find_element(By.TAG_NAME,'body').send_keys(Keys.COMMAND + 't')
         driver.get(whatsapp)
@@ -64,5 +67,5 @@ while True:
         playsound("GhanaHostels.mp4")
     driver.find_element(By.TAG_NAME,'body').send_keys(Keys.COMMAND + 't')
    
-driver.close()  
+   
 
