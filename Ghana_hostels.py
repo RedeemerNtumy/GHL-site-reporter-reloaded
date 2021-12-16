@@ -38,7 +38,7 @@ driver.find_element(By.XPATH,signup).click()
 no_add="This site can’t be reached\nwww.ghanahostels.org’s server IP address could not be found.\nTry:\nChecking the connection\nChecking the proxy, firewall and DNS configuration\nERR_NAME_NOT_RESOLVED\nReload\nDetails"
 reach="This site can’t be reached\nwww.ghanahostels.org’s DNS address could not be found. Diagnosing the problem.\nDNS_PROBE_STARTED\nReload"
 connect_close="This site can’t be reached\nwww.ghanahostels.org unexpectedly closed the connection.\nTry:\nChecking the connection\nChecking the proxy and the firewall\nERR_CONNECTION_CLOSED\nReload\nDetails"
-interrupt="Your connection was interrupted\nA network change was detected.\.ERR_NETWORK_CHANGED\nReload"
+interrupt="Your connection was interrupted\nA network change was detected.\nERR_NETWORK_CHANGED\nReload"
 connect_off="This site can’t be reached\nwww.ghanahostels.org took too long to respond.\nTry:\nChecking the connection\nChecking the proxy and the firewall\nERR_TIMED_OUT\nReload\nDetails"
 test="MAIN\nDashboard\nSETTINGS\nMy Profile\nLogout\nGhana Hostels Limited\nWelcome, Redeemer Kwame\nDashboard\nUniversity of Ghana Student Homepage\nNotice\nCongratulations !!\nYour profile has been validated.\nKindly visit the platform when the portal is opened for reservation / booking.\nClick here to view profile"
 while True:
